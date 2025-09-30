@@ -5,19 +5,19 @@
 
 :root,
 html[data-theme="light"] {
-  --background: #fdfdfd;
-  --foreground: #282728;
-  --accent: #006cac;
-  --muted: #e6e6e6;
-  --border: #ece9e9;
+  --background: #ffffff;        /* Cambiato a white puro (Neuron style) */
+  --foreground: #1a1a1a;        /* Cambiato a nero Neuron */
+  --accent: #6890ac;            /* Brand blue */
+  --muted: #f8f9fa;             /* Soft gray */
+  --border: #eaeaea;
 }
 
 html[data-theme="dark"] {
-  --background: #212737;
-  --foreground: #eaedf3;
-  --accent: #ff6b01;
-  --muted: #343f60;
-  --border: #ab4b08;
+  --background: #0f172a;        /* Slate dark (Neuron) */
+  --foreground: #f1f5f9;        /* Off white */
+  --accent: #60a5fa;            /* Brighter blue per dark */
+  --muted: #1e293b;
+  --border: #334155;
 }
 
 @theme inline {
@@ -26,6 +26,11 @@ html[data-theme="dark"] {
   --color-accent: var(--accent);
   --color-muted: var(--muted);
   --color-border: var(--border);
+  
+  /* Font families */
+  --font-primary: "Rethink Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-accent: "Permanent Marker", cursive;
+  --font-mono: "Fira Code", "Courier New", monospace;
 }
 
 @layer base {
@@ -33,24 +38,56 @@ html[data-theme="dark"] {
     @apply border-border outline-accent/75;
     scrollbar-width: auto;
     scrollbar-color: var(--color-muted) transparent;
+    /* Applica Rethink Sans a tutto */
+    font-family: var(--font-primary);
   }
+  
   html {
     @apply overflow-y-scroll scroll-smooth;
   }
+  
   body {
-    @apply flex min-h-svh flex-col bg-background font-mono text-foreground selection:bg-accent/75 selection:text-background;
+    /* RIMOSSO font-mono, AGGIUNTO font-primary */
+    @apply flex min-h-svh flex-col bg-background text-foreground selection:bg-accent/75 selection:text-background;
+    font-family: var(--font-primary) !important;
+    font-size: 1.125rem;
+    line-height: 1.7;
   }
+  
   a,
   button {
     @apply outline-offset-1 outline-accent focus-visible:no-underline focus-visible:outline-2 focus-visible:outline-dashed;
   }
+  
   button:not(:disabled),
   [role="button"]:not(:disabled) {
     cursor: pointer;
   }
+  
   section,
   footer {
     @apply mx-auto max-w-app px-4;
+  }
+  
+  /* Headings con Rethink Sans */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-primary);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+  
+  p {
+    font-family: var(--font-primary);
+    font-size: 1.125rem;
+    line-height: 1.7;
+  }
+  
+  /* Code mantiene monospace */
+  code,
+  pre,
+  kbd,
+  samp {
+    font-family: var(--font-mono);
   }
 }
 

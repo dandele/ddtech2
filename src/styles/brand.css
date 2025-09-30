@@ -1,0 +1,218 @@
+/* ========================================
+   BRAND GUIDELINES: Tech Critic
+   Custom styles che si AGGIUNGONO a AstroPaper
+   ======================================== */
+
+/* === GOOGLE FONTS === */
+@import url('https://fonts.googleapis.com/css2?family=Rethink+Sans:ital,wght@0,400;0,500;0,700;0,800;1,400;1,500;1,700;1,800&family=Permanent+Marker&display=swap');
+
+/* === CUSTOM VARIABLES (sovrascrivono AstroPaper) === */
+@layer base {
+  :root,
+  html[data-theme="light"] {
+    /* Override AstroPaper colors con i nostri brand colors */
+    --color-fill: 255, 255, 255; /* White */
+    --color-text-base: 26, 26, 26; /* Almost black */
+    --color-accent: 104, 144, 172; /* #6890AC - Brand blue */
+    --color-card: 248, 249, 250; /* Soft gray */
+    --color-card-muted: 244, 244, 245;
+    --color-border: 234, 234, 234;
+    
+    /* Custom brand variables */
+    --color-text-secondary: 74, 85, 104;
+    --color-accent-green: 86, 153, 148; /* #569994 */
+    --color-sketch-black: 45, 55, 72;
+    --color-sketch-yellow: 254, 243, 199;
+    
+    /* Font families */
+    --font-primary: "Rethink Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-accent: "Permanent Marker", cursive;
+  }
+
+  html[data-theme="dark"] {
+    /* Dark mode overrides */
+    --color-fill: 15, 23, 42; /* Slate dark */
+    --color-text-base: 241, 245, 249;
+    --color-accent: 96, 165, 250; /* Brighter blue */
+    --color-card: 30, 41, 59;
+    --color-card-muted: 51, 65, 85;
+    --color-border: 51, 65, 85;
+    
+    --color-text-secondary: 148, 163, 184;
+    --color-accent-green: 52, 211, 153;
+    --color-sketch-yellow: 254, 240, 138;
+  }
+
+  /* === TYPOGRAPHY OVERRIDES === */
+  body {
+    font-family: var(--font-primary) !important;
+    font-size: 1.125rem !important; /* 18px */
+    line-height: 1.7 !important;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-primary) !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.02em !important;
+  }
+
+  /* H1 con Permanent Marker accent (selettivo) */
+  .article-title h1,
+  .page-title h1,
+  h1.sketchy-title {
+    font-family: var(--font-accent) !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.02em !important;
+  }
+
+  /* Paragraphs - Neuron style */
+  p {
+    font-family: var(--font-primary) !important;
+    font-size: 1.125rem !important;
+    line-height: 1.7 !important;
+  }
+
+  /* Links - brand colors */
+  a {
+    color: rgb(var(--color-accent)) !important;
+    transition: color 0.2s ease !important;
+  }
+
+  a:hover {
+    color: rgb(var(--color-accent-green)) !important;
+  }
+
+  /* Code styling */
+  code {
+    font-family: "Fira Code", "Courier New", monospace !important;
+  }
+
+  /* Prose overrides per blog posts */
+  .prose {
+    font-family: var(--font-primary) !important;
+    font-size: 1.125rem !important;
+    line-height: 1.7 !important;
+  }
+
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4,
+  .prose h5,
+  .prose h6 {
+    font-family: var(--font-primary) !important;
+    font-weight: 800 !important;
+  }
+
+  .prose p {
+    font-family: var(--font-primary) !important;
+    font-size: 1.125rem !important;
+    line-height: 1.7 !important;
+  }
+
+  .prose a {
+    color: rgb(var(--color-accent)) !important;
+    text-decoration: underline !important;
+    text-underline-offset: 0.2em !important;
+  }
+
+  .prose a:hover {
+    color: rgb(var(--color-accent-green)) !important;
+  }
+}
+
+/* === CUSTOM COMPONENTS === */
+@layer components {
+  /* Callout Sketchy (3% usage) */
+  .callout-sketchy {
+    position: relative;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    background-color: rgba(254, 243, 199, 0.2);
+    border: 2px solid rgb(var(--color-sketch-black));
+    border-radius: 0.5rem;
+  }
+
+  html[data-theme="dark"] .callout-sketchy {
+    background-color: rgba(254, 240, 138, 0.1);
+    border-color: rgb(var(--color-text-secondary));
+  }
+
+  .callout-sketchy::before {
+    content: "💡";
+    position: absolute;
+    top: -0.75rem;
+    left: -0.75rem;
+    font-size: 1.5rem;
+  }
+
+  /* Post-it Note */
+  .post-it {
+    padding: 1rem;
+    margin: 1rem 0;
+    background-color: rgba(254, 243, 199, 0.3);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transform: rotate(-1deg);
+    border-radius: 0.25rem;
+  }
+
+  html[data-theme="dark"] .post-it {
+    background-color: rgba(254, 240, 138, 0.15);
+  }
+
+  /* Button con brand colors */
+  .btn-brand {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: rgb(var(--color-accent));
+    color: white;
+    font-weight: 700;
+    border-radius: 0.75rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .btn-brand:hover {
+    background-color: rgb(var(--color-accent-green));
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(var(--color-accent), 0.3);
+  }
+}
+
+/* === UTILITY CLASSES === */
+@layer utilities {
+  .font-primary {
+    font-family: var(--font-primary) !important;
+  }
+
+  .font-accent {
+    font-family: var(--font-accent) !important;
+  }
+
+  .text-accent-green {
+    color: rgb(var(--color-accent-green)) !important;
+  }
+
+  .bg-accent-green {
+    background-color: rgb(var(--color-accent-green)) !important;
+  }
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  body {
+    font-size: 1rem !important;
+  }
+
+  p {
+    font-size: 1rem !important;
+  }
+
+  .prose {
+    font-size: 1rem !important;
+  }
+
+  .prose p {
+    font-size: 1rem !important;
+  }
+}
